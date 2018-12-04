@@ -19,9 +19,7 @@ fun main(args: Array<String>) {
         }
     }
 
-    println(allCoordinates.size)
-    println(coordinateSet.size)
-    println(duplicateCoordinates.size)
+    println("The amount of contested inches is: " + duplicateCoordinates.size)
 
 }
 
@@ -31,9 +29,9 @@ fun getAllClaimsFromFile(fileName: String): ArrayList<Claim> {
 
     Files.lines(Paths.get(fileName)).forEach {
         line ->
-        val claimMatcher: Matcher = Pattern.compile("#\\d+ @ (\\d+),(\\d+): (\\d+)x(\\d+)").matcher(line)
+        val claimMatcher: Matcher = Pattern.compile("(#\\d+) @ (\\d+),(\\d+): (\\d+)x(\\d+)").matcher(line)
         claimMatcher.matches();
-        val claim = Claim(claimMatcher.group(1).toInt(), claimMatcher.group(2).toInt(), claimMatcher.group(3).toInt(), claimMatcher.group(4).toInt())
+        val claim = Claim(claimMatcher.group(1), claimMatcher.group(2).toInt(), claimMatcher.group(3).toInt(), claimMatcher.group(4).toInt(), claimMatcher.group(5).toInt())
         allClaims.add(claim)
     }
     return allClaims;
